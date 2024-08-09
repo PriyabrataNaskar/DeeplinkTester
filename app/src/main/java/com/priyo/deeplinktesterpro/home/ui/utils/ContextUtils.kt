@@ -7,7 +7,6 @@ import android.content.Context
 import android.content.ContextWrapper
 import android.content.Intent
 import android.net.Uri
-import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
@@ -36,7 +35,6 @@ fun Context.copyToClipboard(text: String) {
     val clipboard = this.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
     val clip = ClipData.newPlainText("deeplink", text)
     clipboard.setPrimaryClip(clip)
-    Log.e("tag", "${clip.itemCount} items copied to clipboard") //todo: remove logs
 }
 
 fun Context.hideKeyboard() {
