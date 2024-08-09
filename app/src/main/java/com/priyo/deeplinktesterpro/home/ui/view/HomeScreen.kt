@@ -28,29 +28,21 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import com.priyo.deeplinktesterpro.R
-import com.priyo.deeplinktesterpro.home.ui.utils.copyToClipboard
+import com.priyo.deeplinktesterpro.home.data.model.DeepLink
+import com.priyo.deeplinktesterpro.home.ui.utils.hideKeyboard
 import com.priyo.deeplinktesterpro.home.ui.utils.openAppViaDeepLink
 import com.priyo.deeplinktesterpro.ui.theme.MyApplicationTheme
-import org.orbitmvi.orbit.compose.collectAsState
-import org.orbitmvi.orbit.compose.collectSideEffect
 
 @Composable
-fun DeeplinkTesterScreen() {
-    var deeplink by remember { mutableStateOf(TextFieldValue("")) }
+fun HomeScreen(
+    state: HomeState,
+    saveDeeplink: (String) -> Unit,
+    copyDeepLinkToClipBoard: (String) -> Unit,
+    deleteDeepLink: (DeepLink, Int) -> Unit,
+) {
     val context = LocalContext.current
-    val viewModel = hiltViewModel<HomeViewModel>()
-
-    val state by viewModel.collectAsState()
-
-    viewModel.collectSideEffect {
-        when (it) {
-            is HomeSideEffect.DeepLinkSaved -> {}
-            is HomeSideEffect.CopyDeepLinkToClipBoard -> context.copyToClipboard(it.deeplink)
-        }
-    }
-
+    var deeplink by remember { mutableStateOf(TextFieldValue("")) }
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -66,10 +58,10 @@ fun DeeplinkTesterScreen() {
                 DeepLinkCard(
                     text = item.deepLink,
                     onDeleteItem = {
-                        viewModel.deleteDeepLink(item, index)
+                        deleteDeepLink(item, index)
                     },
                     onCopyItem = {
-                        viewModel.copyDeepLinkToClipBoard(it)
+                        copyDeepLinkToClipBoard(it)
                     })
                 Spacer(modifier = Modifier.height(16.dp))
             }
@@ -102,7 +94,8 @@ fun DeeplinkTesterScreen() {
                 context.openAppViaDeepLink(
                     deeplinkInput = deeplink.text,
                     onSuccess = {
-                        viewModel.saveDeepLink(deeplink.text)
+                        saveDeeplink(deeplink.text)
+                        context.hideKeyboard()
                     }
                 )
             },
@@ -114,8 +107,19 @@ fun DeeplinkTesterScreen() {
 
 @Preview(showBackground = true)
 @Composable
-fun DeeplinkTesterPreview() {
+fun HomeScreenPreview() {
     MyApplicationTheme {
-        DeeplinkTesterScreen()
+        HomeScreen(
+            state = HomeState(
+                deepLinks = listOf(
+                    DeepLink("https://www.facebook.com", 1),
+                    DeepLink("driver_app://complete_profile_v2", 2),
+                    DeepLink("driver_app://issue_tips?issue_name=Payout Issues&issue_id=6&sub_issue_id=1173&sub_issue_name=Onboarding plan issue", 3),
+                )
+            ),
+            saveDeeplink = {},
+            copyDeepLinkToClipBoard = {},
+            deleteDeepLink = { _, _ -> }
+        )
     }
 }

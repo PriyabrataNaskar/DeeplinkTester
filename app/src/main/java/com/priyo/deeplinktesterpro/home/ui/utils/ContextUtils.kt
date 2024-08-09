@@ -1,12 +1,17 @@
 package com.priyo.deeplinktesterpro.home.ui.utils
 
+import android.app.Activity
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
+import android.content.ContextWrapper
 import android.content.Intent
 import android.net.Uri
 import android.util.Log
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.activity.ComponentActivity
 import com.priyo.deeplinktesterpro.R
 
 fun Context.openAppViaDeepLink(
@@ -32,4 +37,20 @@ fun Context.copyToClipboard(text: String) {
     val clip = ClipData.newPlainText("deeplink", text)
     clipboard.setPrimaryClip(clip)
     Log.e("tag", "${clip.itemCount} items copied to clipboard") //todo: remove logs
+}
+
+fun Context.hideKeyboard() {
+    val activity = getActivity()
+    val imm = activity?.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+    var view = activity.currentFocus
+    if (view == null) {
+        view = View(activity)
+    }
+    imm.hideSoftInputFromWindow(view.windowToken, 0)
+}
+
+fun Context.getActivity(): ComponentActivity? = when (this) {
+    is ComponentActivity -> this
+    is ContextWrapper -> baseContext.getActivity()
+    else -> null
 }
