@@ -37,24 +37,31 @@ class HomeViewModel @Inject constructor(
 
     private val deepLinkRepository = DeepLinkRepository(database.deepLinkDao())
 
+    private var deepLinks: List<DeepLink>? = emptyList()
+
     private fun getDeepLinks() = intent {
         viewModelScope.launch(Dispatchers.IO) {
-            val results = deepLinkRepository.getDeepLinks()
-            if (!results.isNullOrEmpty()) {
+            deepLinks = deepLinkRepository.getDeepLinks()
+            deepLinks?.let {
                 reduce {
-                    state.copy(deepLinks = results, isLoading = false, isError = null)
+                    state.copy(deepLinks = it, isLoading = false, isError = null)
                 }
             }
         }
     }
 
+    private fun doesContains(deepLink: String): Boolean =
+        deepLinks?.map { it.deepLink }?.contains(deepLink) ?: false
+
     fun saveDeepLink(deepLink: String) = intent {
         viewModelScope.launch(Dispatchers.IO) {
-            deepLinkRepository.insertDeepLink(DeepLink(deepLink))
-            val results = deepLinkRepository.getDeepLinks()
+            if (doesContains(deepLink).not()) {
+                deepLinkRepository.insertDeepLink(DeepLink(deepLink))
+            }
+            deepLinks = deepLinkRepository.getDeepLinks()
             reduce {
                 state.copy(
-                    deepLinks = results ?: state.deepLinks,
+                    deepLinks = deepLinks ?: state.deepLinks,
                     isLoading = false,
                     isError = null
                 )
@@ -65,9 +72,9 @@ class HomeViewModel @Inject constructor(
     fun deleteDeepLink(deepLink: DeepLink, index: Int) = intent {
         viewModelScope.launch(Dispatchers.IO) {
             deepLinkRepository.deleteDeepLink(deepLink.id)
-            val results = deepLinkRepository.getDeepLinks()
+            deepLinks = deepLinkRepository.getDeepLinks()
             reduce {
-                state.copy(deepLinks = results ?: emptyList(), isLoading = false, isError = null)
+                state.copy(deepLinks = deepLinks ?: emptyList(), isLoading = false, isError = null)
             }
         }
     }
