@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Deeplink Tester Pro</string>
+    <string name="open_deeplink">Open Deeplink</string>
+    <string name="enter_deeplink_url">Enter deeplink URL</string>
+    <string name="error_open_deeplink">Failed to open deeplink</string>
+    <string name="error_invalid_deeplink">Please enter a valid URL</string>
+</resources>
