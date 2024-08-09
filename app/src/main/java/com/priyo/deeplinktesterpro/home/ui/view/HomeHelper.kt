@@ -1,4 +1,6 @@
-package com.priyo.deeplinktesterpro.view
+package com.priyo.deeplinktesterpro.home.ui.view
+
+import com.priyo.deeplinktesterpro.home.data.model.DeepLink
 
 data class HomeState(
     val deepLinks: List<DeepLink> = emptyList(),
@@ -6,7 +8,7 @@ data class HomeState(
     val isError: String? = null,
 )
 
-sealed class HomeSideEffect{
+sealed class HomeSideEffect {
     data class DeepLinkSaved(val deeplink: String) : HomeSideEffect()
     data class CopyDeepLinkToClipBoard(val deeplink: String) : HomeSideEffect()
 }
