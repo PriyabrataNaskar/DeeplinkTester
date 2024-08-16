@@ -1,14 +1,10 @@
 package com.priyo.deeplinktesterpro.home.ui.view
 
-import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.room.Room
-import com.priyo.deeplinktesterpro.home.data.datasource.AppDatabase
-import com.priyo.deeplinktesterpro.home.data.repository.DeepLinkRepository
 import com.priyo.deeplinktesterpro.home.data.model.DeepLink
+import com.priyo.deeplinktesterpro.home.data.repository.IDeepLinkRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.ContainerHost
@@ -20,22 +16,14 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    @ApplicationContext val applicationContext: Context
+    private val deepLinkRepository: IDeepLinkRepository,
 ) : ContainerHost<HomeState, HomeSideEffect>, ViewModel() {
 
     override val container = container<HomeState, HomeSideEffect>(HomeState())
 
-    private val database = Room.databaseBuilder(
-        applicationContext,
-        AppDatabase::class.java,
-        "my_database"
-    ).build()
-
     init {
         getDeepLinks()
     }
-
-    private val deepLinkRepository = DeepLinkRepository(database.deepLinkDao())
 
     private var deepLinks: List<DeepLink>? = emptyList()
 
