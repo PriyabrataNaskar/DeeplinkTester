@@ -20,3 +20,4 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 -dontwarn com.google.errorprone.annotations.MustBeClosed
+-dontwarn com.priyo.deeplinktesterpro.DeeplinkApplication_GeneratedInjector
