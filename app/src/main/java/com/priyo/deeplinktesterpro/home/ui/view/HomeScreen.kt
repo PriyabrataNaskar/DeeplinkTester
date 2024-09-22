@@ -40,6 +40,7 @@ fun HomeScreen(
     saveDeeplink: (String) -> Unit,
     copyDeepLinkToClipBoard: (String) -> Unit,
     deleteDeepLink: (DeepLink, Int) -> Unit,
+    onItemClick: (String) -> Unit
 ) {
     val context = LocalContext.current
     var deeplink by remember { mutableStateOf(TextFieldValue("")) }
@@ -62,6 +63,9 @@ fun HomeScreen(
                     },
                     onCopyItem = {
                         copyDeepLinkToClipBoard(it)
+                    },
+                    onItemClick = {
+                        onItemClick(it)
                     })
                 Spacer(modifier = Modifier.height(16.dp))
             }
@@ -113,13 +117,12 @@ fun HomeScreenPreview() {
             state = HomeState(
                 deepLinks = listOf(
                     DeepLink("https://www.facebook.com", 1),
-                    DeepLink("driver_app://complete_profile_v2", 2),
-                    DeepLink("driver_app://issue_tips?issue_name=Payout Issues&issue_id=6&sub_issue_id=1173&sub_issue_name=Onboarding plan issue", 3),
                 )
             ),
             saveDeeplink = {},
             copyDeepLinkToClipBoard = {},
-            deleteDeepLink = { _, _ -> }
+            deleteDeepLink = { _, _ -> },
+            onItemClick = {}
         )
     }
 }

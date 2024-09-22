@@ -5,6 +5,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.priyo.deeplinktesterpro.home.ui.utils.copyToClipboard
+import com.priyo.deeplinktesterpro.home.ui.utils.openAppViaDeepLink
 import org.orbitmvi.orbit.compose.collectAsState
 import org.orbitmvi.orbit.compose.collectSideEffect
 
@@ -19,6 +20,7 @@ fun HomeRoute() {
         when (it) {
             is HomeSideEffect.DeepLinkSaved -> {}
             is HomeSideEffect.CopyDeepLinkToClipBoard -> context.copyToClipboard(it.deeplink)
+            is HomeSideEffect.OpenAppViaDeeplink -> context.openAppViaDeepLink(it.deeplink, {})
         }
     }
 
@@ -32,6 +34,9 @@ fun HomeRoute() {
         },
         deleteDeepLink = { item, index ->
             viewModel.deleteDeepLink(item, index)
+        },
+        onItemClick = {
+            viewModel.onDeeplinkItemClick(it)
         }
     )
 

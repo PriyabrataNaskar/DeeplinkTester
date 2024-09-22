@@ -7,5 +7,6 @@ import androidx.room.PrimaryKey
 data class DeepLink(
     val deepLink: String,
     @PrimaryKey(autoGenerate = true)
-    val id: Int = 0
+    val id: Int = 0,
+    val time: Long? = System.currentTimeMillis()
 )

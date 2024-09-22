@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.priyo.deeplinktesterpro.home.data.datasource.AppDatabase
 import com.priyo.deeplinktesterpro.home.data.datasource.DeepLinkDao
+import com.priyo.deeplinktesterpro.home.data.datasource.MIGRATION_1_2
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -24,6 +25,6 @@ object LocalDataSourceModule {
             appContext,
             AppDatabase::class.java,
             "my_database"
-        ).build().deepLinkDao()
+        ).addMigrations(MIGRATION_1_2).build().deepLinkDao()
     }
 }

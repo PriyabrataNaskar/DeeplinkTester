@@ -11,4 +11,5 @@ data class HomeState(
 sealed class HomeSideEffect {
     data class DeepLinkSaved(val deeplink: String) : HomeSideEffect()
     data class CopyDeepLinkToClipBoard(val deeplink: String) : HomeSideEffect()
+    data class OpenAppViaDeeplink(val deeplink: String) : HomeSideEffect()
 }

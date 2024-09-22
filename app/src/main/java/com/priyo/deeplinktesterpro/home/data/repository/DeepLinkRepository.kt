@@ -16,6 +16,10 @@ class DeepLinkRepository @Inject constructor(
         return deepLinkDao.getDeepLinks()
     }
 
+    override suspend fun updateDeepLink(deepLink: DeepLink) {
+        deepLinkDao.updateDeepLink(deepLink)
+    }
+
     override suspend fun deleteDeepLink(deepLinkId: Int) {
         deepLinkDao.deleteDeepLink(deepLinkId = deepLinkId)
     }

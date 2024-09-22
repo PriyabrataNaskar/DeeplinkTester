@@ -38,13 +38,13 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    private fun doesContains(deepLink: String): Boolean =
-        deepLinks?.map { it.deepLink }?.contains(deepLink) ?: false
-
     fun saveDeepLink(deepLink: String) = intent {
         viewModelScope.launch(Dispatchers.IO) {
-            if (doesContains(deepLink).not()) {
+            val filteredDeeplink = deepLinks?.find { it.deepLink == deepLink }
+            if (filteredDeeplink == null) {
                 deepLinkRepository.insertDeepLink(DeepLink(deepLink))
+            } else {
+                deepLinkRepository.updateDeepLink(filteredDeeplink.copy(time = System.currentTimeMillis()))
             }
             deepLinks = deepLinkRepository.getDeepLinks()
             reduce {
@@ -63,6 +63,16 @@ class HomeViewModel @Inject constructor(
             deepLinks = deepLinkRepository.getDeepLinks()
             reduce {
                 state.copy(deepLinks = deepLinks ?: emptyList(), isLoading = false, isError = null)
+            }
+        }
+    }
+
+    fun onDeeplinkItemClick(deepLink: String) = intent {
+        viewModelScope.launch(Dispatchers.IO) {
+            val filteredDeeplink = deepLinks?.find { it.deepLink == deepLink }
+            if (filteredDeeplink != null) {
+                deepLinkRepository.updateDeepLink(filteredDeeplink.copy(time = System.currentTimeMillis()))
+                postSideEffect(HomeSideEffect.OpenAppViaDeeplink(filteredDeeplink.deepLink))
             }
         }
     }
