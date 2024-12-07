@@ -18,8 +18,8 @@ Lightweight Ads free Deep Link Tester - Android app designed to simplify deeplin
 # Libraries and Technologies
 - Jetpack Compose: Modern way of building UI.[Documentation.](https://developer.android.com/jetpack)
 - Hilt: For dependency injection. [Documentation.](https://developer.android.com/training/dependency-injection/hilt-android)
-- Room: For database management. [Documentation.]()
-- Orbit MVI: For state management. [Documentation.]()
+- Room: For database management. [Documentation.](https://developer.android.com/jetpack/androidx/releases/room)
+- Orbit MVI: For state management. [Documentation.](https://github.com/orbit-mvi/orbit-mvi)
 
 # Project Structure
 `
