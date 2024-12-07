@@ -22,7 +22,7 @@ Lightweight Ads free Deep Link Tester - Android app designed to simplify deeplin
 - Orbit MVI: For state management. [Documentation.](https://github.com/orbit-mvi/orbit-mvi)
 
 # Project Structure
-`
+```
 ├── app/                     # Main app module
 │   ├── src/
 │       ├── main/
@@ -34,7 +34,7 @@ Lightweight Ads free Deep Link Tester - Android app designed to simplify deeplin
 ├── build.gradle             # Project-level Gradle configuration
 ├── settings.gradle          # Settings for project modules
 ├── proguard-rules.pro       # ProGuard configuration for release builds
-`
+```
 
 # Screenshots
 
