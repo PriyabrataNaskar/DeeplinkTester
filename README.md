@@ -42,4 +42,4 @@ Lightweight Ads free Deep Link Tester - Android app designed to simplify deeplin
 
 # Download APK
 
-[APK Link]()
+[APK Link](https://github.com/PriyabrataNaskar/DeeplinkTester/blob/dev/apks/app-debug.apk)
