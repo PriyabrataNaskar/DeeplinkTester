@@ -4,7 +4,10 @@ Lightweight Ads free Deep Link Tester - Android app designed to simplify deeplin
 
 # Screenshots
 
-<img width="373" alt="image" src="https://github.com/user-attachments/assets/0ada6b80-e196-423d-ab0c-cd7c7df86999">
+<img width="373" alt="deeplink-tester-screenshot" src="https://github.com/user-attachments/assets/0ada6b80-e196-423d-ab0c-cd7c7df86999">
+
+<img width="384" alt="image" src="https://github.com/user-attachments/assets/3f0860e5-75f2-4e0b-acf7-feee2fee249a">
+
 
 # Key Features
 - Store unique deep links for reuse.
