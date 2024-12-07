@@ -2,6 +2,10 @@
 
 Lightweight Ads free Deep Link Tester - Android app designed to simplify deeplink testing during development. It helps developers save, manage, and test deep links efficiently, making debugging faster and more organized.
 
+# Screenshots
+
+<img width="373" alt="image" src="https://github.com/user-attachments/assets/0ada6b80-e196-423d-ab0c-cd7c7df86999">
+
 # Key Features
 - Store unique deep links for reuse.
 - Create, delete, and manage deep links.
@@ -35,8 +39,6 @@ Lightweight Ads free Deep Link Tester - Android app designed to simplify deeplin
 ├── settings.gradle          # Settings for project modules
 ├── proguard-rules.pro       # ProGuard configuration for release builds
 ```
-
-# Screenshots
 
 # Download APK
 
