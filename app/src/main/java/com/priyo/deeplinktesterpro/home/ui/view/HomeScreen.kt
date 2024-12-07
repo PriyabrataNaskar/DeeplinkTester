@@ -32,7 +32,7 @@ import com.priyo.deeplinktesterpro.R
 import com.priyo.deeplinktesterpro.home.data.model.DeepLink
 import com.priyo.deeplinktesterpro.home.ui.utils.hideKeyboard
 import com.priyo.deeplinktesterpro.home.ui.utils.openAppViaDeepLink
-import com.priyo.deeplinktesterpro.ui.theme.MyApplicationTheme
+import com.priyo.deeplinktesterpro.ui.theme.DeeplinkTesterTheme
 
 @Composable
 fun HomeScreen(
@@ -112,7 +112,7 @@ fun HomeScreen(
 @Preview(showBackground = true)
 @Composable
 fun HomeScreenPreview() {
-    MyApplicationTheme {
+    DeeplinkTesterTheme {
         HomeScreen(
             state = HomeState(
                 deepLinks = listOf(

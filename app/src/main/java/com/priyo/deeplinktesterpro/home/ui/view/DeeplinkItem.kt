@@ -22,7 +22,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.priyo.deeplinktesterpro.R
-import com.priyo.deeplinktesterpro.ui.theme.MyApplicationTheme
+import com.priyo.deeplinktesterpro.ui.theme.DeeplinkTesterTheme
 
 @Composable
 fun DeeplinkItem(
@@ -70,7 +70,7 @@ fun DeeplinkItem(
 @Preview(showBackground = true)
 @Composable
 fun DeeplinkItemPreview() {
-    MyApplicationTheme {
+    DeeplinkTesterTheme {
         DeeplinkItem(
             text = "https://www.google.com",
             onDeleteItem = {},
