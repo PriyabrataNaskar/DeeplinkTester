@@ -1,10 +1,10 @@
 # Deeplink Tester Pro
 
+![deeplink-tester](https://github.com/user-attachments/assets/243146bf-ff87-481f-bdb4-3a0ec1575e0e)
+
 Lightweight Ads free Deep Link Tester - Android app designed to simplify deeplink testing during development. It helps developers save, manage, and test deep links efficiently, making debugging faster and more organized.
 
 # Screenshots
-
-![deeplink-tester](https://github.com/user-attachments/assets/243146bf-ff87-481f-bdb4-3a0ec1575e0e)
 
 <img width="373" alt="deeplink-tester-screenshot" src="https://github.com/user-attachments/assets/0ada6b80-e196-423d-ab0c-cd7c7df86999">
 
